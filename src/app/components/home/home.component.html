@@ -1,0 +1,23 @@
+<form #form="ngForm" (submit)="onSubmit()">
+    <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput placeholder="e.g London, Paris" name="city" [(ngModel)]="city_name">
+        <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+</form>
+
+<mat-card *ngIf="weather_data">
+    <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title>{{ weather_data.location.name }}</mat-card-title>
+          <mat-card-subtitle>{{ weather_data.location.country }}</mat-card-subtitle>
+          <img mat-card-md-image src="{{weather_data.current.condition.icon}}"  alt="">
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+        <h1>{{ weather_data.current.temp_c }}°C</h1>
+        <p>{{ weather_data.current.condition.text }}</p>
+        <p>Wind speed: {{ weather_data.current.wind_kph }} km/h</p>
+        <p>UV Index: {{ weather_data.current.uv }} </p>
+    </mat-card-content>
+</mat-card>
